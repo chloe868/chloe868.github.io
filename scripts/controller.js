@@ -54,14 +54,6 @@ $(document).ready(function() {
             var topic = $("#SubTopic").val();
             var row = "<tr><td>" + topic + "</td><td>" + moment().format('MMMM Do YYYY, h:mm:ss a') + "</td></tr>";
             $("#tbsubscribe").append(row);
-            $("#btnPublish").click(function() {
-                var payload = $("#Payload").val();
-                if (topic == topic1) {
-                    var row = "<tr><td>" + topic + "</td><td>" + payload + "</td><td>" + moment().format('MMMM Do YYYY, h:mm:ss a') + "</td></tr>";
-                    $("#tbbroker").append(row);
-                }
-
-            });
             topic1 = $("#Topic").val();
 
             client.subscribe(topic)
