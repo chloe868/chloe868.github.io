@@ -1,0 +1,192 @@
+<DOCTYPE>
+    <html>
+
+    <head>
+        <title>mows</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+    </head>
+    <style>
+        #background {
+            background-image: url("https://esl-website-production.s3.amazonaws.com/uploads/image/file/571/EMQ_Background.jpg");
+            background-size: cover;
+        }
+        
+        #color {
+            color: white;
+            margin-top: 5%;
+        }
+        
+        #divForm {
+            width: 30%;
+            position: absolute;
+            left: 1%;
+            margin-top: 10%;
+            background-color: rgb(200, 207, 204);
+            border-radius: 5%;
+            padding: 2%;
+        }
+        
+        table,
+        th,
+        tr,
+        td {
+            border-collapse: collapse;
+            color: black;
+            padding: 10px;
+        }
+        
+        #divButton {
+            width: 50%;
+            position: relative;
+            background-color: rgb(200, 207, 204);
+            border-radius: 5%;
+            padding: 2%;
+        }
+        
+        #divPublish {
+            width: 30%;
+            position: absolute;
+            left: 35%;
+            margin-top: 10%;
+            background-color: rgb(200, 207, 204);
+            border-radius: 5%;
+            padding: 2%;
+        }
+        
+        #divButtonPublish {
+            width: 30%;
+            position: relative;
+            background-color: rgb(200, 207, 204);
+            border-radius: 5%;
+            padding: 2%;
+        }
+        
+        #divSubscribe {
+            width: 30%;
+            position: absolute;
+            left: 69%;
+            margin-top: 10%;
+            background-color: rgb(200, 207, 204);
+            border-radius: 5%;
+            padding: 2%;
+        }
+        
+        #divButtonSubscribe {
+            width: 50%;
+            position: relative;
+            background-color: rgb(200, 207, 204);
+            border-radius: 5%;
+            padding: 2%;
+        }
+    </style>
+
+    <body id="background">
+        <center>
+            <h1 id="color"><b>MQTT over Web Socket</b></h1>
+        </center>
+        <form id="divForm">
+            <center>
+                <h1>Broker</h1>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Address</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="Address" value="ws://broker.hivemq.com:8000/mqtt">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Status</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="checkStatus">
+                    </div>
+                </div>
+        </form>
+        <form>
+            <div id="divButton">
+                <button id="btnConnect" class="btn btn-success btn-lg btn-block" type="button">
+                <h4>Connect</h4>
+            </button>
+                <button id="btnDisconnect" class="btn btn-success btn-lg btn-block" type="button">
+                <h4>Disconnect</h4>
+            </button>
+        </form>
+        </div>
+        <table id="tbbroker">
+            <thead>
+                <th>Topic</th>
+                <th>Payload</th>
+                <th>Time</th>
+            </thead>
+            <tbody></tbody>
+        </table>
+        </center>
+        </form>
+        <form id="divPublish">
+            <center>
+                <h1>Publish</h1>
+                <div class="form-group row">
+                    <label for="Topic" class="col-sm-2 col-form-label">Topic</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="Topic">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="Payload" class="col-sm-2 col-form-label">Payload</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="Payload">
+                    </div>
+                </div>
+        </form>
+        <form>
+            <div id="divButtonPublish">
+                <button id="btnPublish" class="btn btn-success btn-lg btn-block" type="button">
+                <h4>Publish</h4>
+            </button>
+        </form>
+        </div>
+        <table id="tbpublish">
+            <thead>
+                <th>Topic</th>
+                <th>Payload</th>
+                <th>Time</th>
+            </thead>
+            <tbody></tbody>
+        </table><br>
+        </center>
+        </form>
+        <form id="divSubscribe">
+            <center>
+                <h1>Subscribe</h1>
+                <div class="form-group row">
+                    <label for="SubTopic" class="col-sm-2 col-form-label">Topic</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="SubTopic">
+                    </div>
+                </div>
+        </form>
+        <form>
+            <div id="divButtonSubscribe">
+                <button id="btnSubscribe" class="btn btn-success btn-lg btn-block" type="button">
+                <h4>Subscribe</h4>
+            </button>
+                <button id="btnUnsubscribe" class="btn btn-success btn-lg btn-block" type="button">
+                <h4>Unsubscribe</h4>
+            </button>
+        </form>
+        </div>
+        <table id="tbsubscribe">
+            <thead>
+                <th>Topic</th>
+                <th>Time</th>
+            </thead>
+        </table><br>
+        </center>
+        </form>
+    </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.js"></script>
+    <script src="scripts/browserMqtt.js"></script>
+    <script src="scripts/controller.js"></script>
+
+    </html>
