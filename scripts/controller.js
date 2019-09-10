@@ -66,7 +66,8 @@ $(document).ready(function() {
 
             client.subscribe(topic)
             client.on("message", function(topic, payload) {
-                console.log([topic, payload].join(": "));
+                var row = "<tr><td>" + topic + "</td><td>" + payload + "</td><td>" + moment().format('MMMM Do YYYY, h:mm:ss a') + "</td></tr>";
+                    $("#tbbroker").append(row);
             })
 
         })
