@@ -38,37 +38,37 @@ $(document).ready(function() {
                 timer: 1500
               })
         })
-        subs = false;
-        $("#btnPublish").click(function() {
 
-            var topic = $("#Topic").val();
-            var payload = $("#Payload").val();
+        client.subscribe(topic)
+        client.on("message", function(topic, payload) {
             var row = "<tr><td>" + topic + "</td><td>" + payload + "</td><td>" + moment().format('MMMM Do YYYY, h:mm:ss a') + "</td></tr>";
-            $("#tbpublish").append(row);
-            subs = true;
-
-            client.publish(topic, payload)
+                $("#tbbroker").append(row);
         })
 
-        $("#btnSubscribe").click(function() {
-            var topic = $("#SubTopic").val();
-            var row = "<tr><td>" + topic + "</td><td>" + moment().format('MMMM Do YYYY, h:mm:ss a') + "</td></tr>";
-            $("#tbsubscribe").append(row);
-            topic1 = $("#Topic").val();
+    })
 
-            client.subscribe(topic)
-            client.on("message", function(topic, payload) {
-                var row = "<tr><td>" + topic + "</td><td>" + payload + "</td><td>" + moment().format('MMMM Do YYYY, h:mm:ss a') + "</td></tr>";
-                    $("#tbbroker").append(row);
-            })
+    subs = false;
+    $("#btnPublish").click(function() {
 
-        })
-        $("#btnUnsubscribe").click(function() {
-            var topic = $("#SubTopic").val();
-            client.unsubscribe(topic)
-            topic1 = "";
+        var topic = $("#Topic").val();
+        var payload = $("#Payload").val();
+        var row = "<tr><td>" + topic + "</td><td>" + payload + "</td><td>" + moment().format('MMMM Do YYYY, h:mm:ss a') + "</td></tr>";
+        $("#tbpublish").append(row);
+        subs = true;
 
-        })
+        client.publish(topic, payload)
+    })
+
+    $("#btnSubscribe").click(function() {
+        var topic = $("#SubTopic").val();
+        var row = "<tr><td>" + topic + "</td><td>" + moment().format('MMMM Do YYYY, h:mm:ss a') + "</td></tr>";
+        $("#tbsubscribe").append(row);
+
+    })
+    $("#btnUnsubscribe").click(function() {
+        var topic = $("#SubTopic").val();
+        client.unsubscribe(topic)
+        topic1 = "";
 
     })
 })
